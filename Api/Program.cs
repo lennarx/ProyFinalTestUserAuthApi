@@ -1,4 +1,5 @@
 using Domain;
+using Domain.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +25,8 @@ namespace Api
                 db.Database.Migrate();
             }
 
+            InitiateDatabase(host);
+
             host.Run();
         }
 
@@ -33,5 +36,15 @@ namespace Api
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        public static void InitiateDatabase(IHost host)
+        {
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<UsersContext>();
+                DataInitialization.Initiate(context);
+            }
+        }
     }
 }
