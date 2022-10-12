@@ -44,6 +44,7 @@ namespace Api.Controllers
             return Ok(result);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
