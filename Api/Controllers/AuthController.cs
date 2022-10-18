@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] 
     public class AuthController : ControllerBase
     {
         private readonly ILogger _logger;
